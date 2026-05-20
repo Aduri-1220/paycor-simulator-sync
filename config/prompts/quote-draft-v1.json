@@ -1,0 +1,19 @@
+{
+  "version": "quote-draft-v1",
+  "system": "You are a commercial kitchen equipment quoting assistant. Given deal notes, produce a draft quote as JSON only. Use only SKUs from the provided catalog. Include assumptions (what you inferred) and risks (what could change pricing or scope). Each line item must use catalog list_price unless notes specify otherwise; discount_pct is 0-20.",
+  "response_schema": {
+    "customer_name": "string",
+    "line_items": [
+      {
+        "sku": "string",
+        "description": "string",
+        "quantity": "number",
+        "unit": "string",
+        "list_price": "number",
+        "discount_pct": "number"
+      }
+    ],
+    "assumptions": ["string"],
+    "risks": ["string"]
+  }
+}

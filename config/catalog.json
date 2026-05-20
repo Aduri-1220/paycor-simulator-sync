@@ -1,0 +1,62 @@
+{
+  "policy": {
+    "min_margin_pct": 15,
+    "max_discount_pct": 20
+  },
+  "products": [
+    {
+      "sku": "HOOD-12",
+      "name": "Commercial hood — 12 ft",
+      "description": "Stainless commercial exhaust hood, 12 linear feet",
+      "unit": "each",
+      "list_price": 4800,
+      "cost": 3200,
+      "active": true
+    },
+    {
+      "sku": "VENT-48",
+      "name": "Ventilation duct — 48 in",
+      "description": "Insulated duct run, 48 inch diameter",
+      "unit": "each",
+      "list_price": 2200,
+      "cost": 1400,
+      "active": true
+    },
+    {
+      "sku": "FILTER-SET",
+      "name": "Filter maintenance kit",
+      "description": "Grease filters and hardware for one hood",
+      "unit": "kit",
+      "list_price": 450,
+      "cost": 220,
+      "active": true
+    },
+    {
+      "sku": "INSTALL-LABOR",
+      "name": "Installation labor",
+      "description": "Certified installer, per hour",
+      "unit": "hour",
+      "list_price": 185,
+      "cost": 95,
+      "active": true
+    },
+    {
+      "sku": "INSPECTION",
+      "name": "Site inspection",
+      "description": "Pre-install site survey and measurements",
+      "unit": "visit",
+      "list_price": 350,
+      "cost": 120,
+      "active": true
+    },
+    {
+      "sku": "LEGACY-HOOD",
+      "name": "Legacy hood (discontinued)",
+      "description": "Old model — do not quote",
+      "unit": "each",
+      "list_price": 3000,
+      "cost": 2000,
+      "active": false
+    }
+  ]
+}

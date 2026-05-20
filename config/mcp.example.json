@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "portal-mcp": {
+      "command": "node",
+      "args": ["src/mcp/cli.js"],
+      "cwd": "/Users/chinnicherrishmareddyaduri/Project2",
+      "env": {
+        "DB_PATH": "./data/payroll.db",
+        "MCP_API_KEY": "your-secret-key",
+        "MCP_REQUIRE_AUTH": "true"
+      }
+    }
+  }
+}

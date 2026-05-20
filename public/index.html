@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bendito HR — PTO, CRM & AI Quotes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="header-inner">
+          <div class="brand">
+            <span class="brand-mark">B</span>
+            <div>
+              <h1>Bendito HR</h1>
+              <p class="subtitle">PTO, CRM sync & AI-accelerated quotes</p>
+            </div>
+          </div>
+          <div class="header-actions">
+            <span class="crm-mode" id="crm-mode"></span>
+            <p class="header-hint">Approve → then Run CRM sync</p>
+            <button type="button" class="btn btn-primary" id="run-sync-btn">Run CRM sync</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="stats" id="stats"></section>
+        <section class="stats stats-quotes" id="quote-stats"></section>
+
+        <div class="grid">
+          <section class="panel">
+            <div class="panel-head">
+              <h2>New time off request</h2>
+            </div>
+            <form id="request-form" class="form">
+              <label>
+                Employee
+                <select name="employee_id" required id="employee-select">
+                  <option value="">Select employee…</option>
+                </select>
+              </label>
+              <div class="form-row">
+                <label>
+                  Start date
+                  <input type="date" name="start_date" required />
+                </label>
+                <label>
+                  End date
+                  <input type="date" name="end_date" required />
+                </label>
+              </div>
+              <label>
+                Reason
+                <textarea name="reason" rows="2" placeholder="Optional"></textarea>
+              </label>
+              <button type="submit" class="btn btn-secondary">Submit request</button>
+            </form>
+          </section>
+
+          <section class="panel panel-wide">
+            <div class="panel-head">
+              <h2>Requests</h2>
+              <button type="button" class="btn btn-ghost btn-sm" id="refresh-btn">Refresh</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Employee</th>
+                    <th>Dates</th>
+                    <th>Status</th>
+                    <th>CRM sync</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="requests-body">
+                  <tr>
+                    <td colspan="6" class="empty">Loading…</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <section class="panel panel-quotes">
+          <div class="panel-head">
+            <h2>AI draft quotes <span class="tag">Level 5</span></h2>
+            <span class="ai-meta" id="quote-ai-meta"></span>
+          </div>
+          <div class="quotes-layout">
+            <form id="quote-form" class="form quote-form">
+              <label>
+                Customer name
+                <input type="text" name="customer_name" required placeholder="Acme Kitchen Group" />
+              </label>
+              <label>
+                Deal notes
+                <textarea
+                  name="deal_notes"
+                  rows="4"
+                  required
+                  placeholder="3 kitchens, hood install by June, ventilation, 8 hours labor…"
+                ></textarea>
+              </label>
+              <button type="submit" class="btn btn-secondary">Generate AI draft</button>
+            </form>
+            <div class="quotes-list-wrap">
+              <div class="panel-head panel-head-inline">
+                <h3>Drafts</h3>
+                <button type="button" class="btn btn-ghost btn-sm" id="quotes-refresh-btn">Refresh</button>
+              </div>
+              <div id="quotes-list" class="quotes-list">
+                <p class="empty">Loading quotes…</p>
+              </div>
+            </div>
+          </div>
+          <div id="quote-detail" class="quote-detail" hidden></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

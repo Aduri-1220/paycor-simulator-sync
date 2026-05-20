@@ -8,6 +8,15 @@
     "sync": "node src/index.js once",
     "documents": "node src/documents/cli.js once",
     "documents:seed": "node src/documents/cli.js seed",
+    "crm": "node src/crm/cli.js once",
+    "crm:seed": "node src/crm/cli.js seed",
+    "crm:status": "node src/crm/cli.js status",
+    "crm:backfill": "node src/crm/cli.js backfill",
+    "ui": "node src/ui/server.js",
+    "ui:seed": "node src/ui/seed-cli.js",
+    "quotes:seed": "node src/quotes/cli.js seed",
+    "quotes:draft": "node src/quotes/cli.js draft",
+    "mcp": "node src/mcp/cli.js",
     "postinstall": "playwright install chromium",
     "test": "vitest run"
   },
@@ -15,10 +24,12 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "better-sqlite3": "^11.9.0",
     "csv-parse": "^5.6.0",
     "dotenv": "^16.5.0",
-    "playwright": "^1.52.0"
+    "playwright": "^1.52.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "vitest": "^3.1.4"

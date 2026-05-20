@@ -1,5 +1,5 @@
-import { approveTimeOffRequest } from '../crm/approveRequest.js';
 import { logger } from '../utils/logger.js';
+import { approveTimeOffRequest } from './approveRequest.js';
 
 const SEED_REQUESTS = [
   {
@@ -24,13 +24,18 @@ const SEED_REQUESTS = [
   },
 ];
 
-export function seedApprovedTimeOff(db) {
-  let inserted = 0;
+export function seedApprovedWithCrmJobs(db) {
+  let approved = 0;
+  let jobsEnqueued = 0;
+
   for (const row of SEED_REQUESTS) {
-    approveTimeOffRequest(db, row);
-    inserted += 1;
+    const result = approveTimeOffRequest(db, row);
+    approved += 1;
+    if (result.jobEnqueued) jobsEnqueued += 1;
   }
 
-  logger.info('seeded approved time off requests', { count: inserted });
-  return { count: inserted };
+  logger.info('seeded approved requests with crm jobs', { approved, jobs_enqueued: jobsEnqueued });
+  return { approved, jobsEnqueued };
 }
+
+export { SEED_REQUESTS };
