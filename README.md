@@ -86,6 +86,6 @@ sqlite3 data/payroll.db "SELECT employee_id, first_name, employment_status FROM 
 sqlite3 data/payroll.db "SELECT * FROM sync_runs ORDER BY run_id DESC LIMIT 1;"
 ```
 
-## Interview line
+## Abouy
 
 > I built a two-system sync with retry and idempotent upserts—similar to TAP's Paycor integrations. A scheduled worker reads employee records, maps fields through a config layer, upserts into SQLite payroll tables, and writes an audit trail for every run and row-level failure.
