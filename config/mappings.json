@@ -1,0 +1,15 @@
+{
+  "fields": [
+    { "source": "employee_id", "target": "employees.employee_id", "transform": "trim" },
+    { "source": "first_name", "target": "employees.first_name", "transform": "trim" },
+    { "source": "last_name", "target": "employees.last_name", "transform": "trim" },
+    { "source": "email", "target": "employees.email", "transform": "trim_nullable" },
+    { "source": "department", "target": "employees.department", "transform": "trim_nullable" },
+    { "source": "job_title", "target": "employees.job_title", "transform": "trim_nullable" },
+    { "source": "employment_status", "target": "employees.employment_status", "transform": "lowercase_enum" },
+    { "source": "hire_date", "target": "employees.hire_date", "transform": "iso_date_nullable" },
+    { "source": "updated_at", "target": "employees.source_updated_at", "transform": "iso_datetime" },
+    { "source": "hourly_rate", "target": "compensation.hourly_rate", "transform": "decimal_2" },
+    { "source": "hire_date", "target": "compensation.effective_date", "transform": "iso_date_nullable" }
+  ]
+}
