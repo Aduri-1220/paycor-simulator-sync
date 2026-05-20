@@ -39,6 +39,14 @@ export const config = {
   runOnStart: envBool('RUN_ON_START', true),
   logLevel: envString('LOG_LEVEL', 'info'),
   mappingsPath: path.resolve(rootDir, 'config/mappings.json'),
+  documentsDir: path.resolve(rootDir, envString('DOCUMENTS_DIR', './data/documents')),
+  templateId: envString('TEMPLATE_ID', 'time-off-approval'),
+  templatesRoot: path.resolve(rootDir, 'config/templates'),
+  emailProvider: envString('EMAIL_PROVIDER', 'resend'),
+  emailApiKey: envString('EMAIL_API_KEY', ''),
+  emailFrom: envString('EMAIL_FROM', 'onboarding@resend.dev'),
+  emailDryRun: envBool('EMAIL_DRY_RUN', true),
+  pdfEngine: envString('PDF_ENGINE', 'playwright'),
 };
 
 export function validateConfig() {
@@ -51,5 +59,20 @@ export function validateConfig() {
   const allowedFormats = ['auto', 'json', 'csv'];
   if (!allowedFormats.includes(config.sourceFormat)) {
     throw new Error(`SOURCE_FORMAT must be one of: ${allowedFormats.join(', ')}`);
+  }
+  const allowedPdfEngines = ['playwright'];
+  if (!allowedPdfEngines.includes(config.pdfEngine)) {
+    throw new Error(`PDF_ENGINE must be one of: ${allowedPdfEngines.join(', ')}`);
+  }
+  const allowedEmailProviders = ['resend', 'sendgrid'];
+  if (!allowedEmailProviders.includes(config.emailProvider)) {
+    throw new Error(`EMAIL_PROVIDER must be one of: ${allowedEmailProviders.join(', ')}`);
+  }
+}
+
+export function validateDocumentConfig() {
+  validateConfig();
+  if (!config.emailDryRun && !config.emailApiKey) {
+    throw new Error('EMAIL_API_KEY is required when EMAIL_DRY_RUN=false');
   }
 }

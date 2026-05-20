@@ -86,6 +86,32 @@ sqlite3 data/payroll.db "SELECT employee_id, first_name, employment_status FROM 
 sqlite3 data/payroll.db "SELECT * FROM sync_runs ORDER BY run_id DESC LIMIT 1;"
 ```
 
-## Abouy
+## Document pipeline (Level 3 — Bendito / TAP)
+
+When a **time off request** is `approved`, the document worker generates a client-facing PDF and sends email (Resend or SendGrid sandbox).
+
+```bash
+npm run sync              # load employees (needed for names/emails)
+npm run documents:seed    # insert sample approved PTO requests
+npm run documents         # HTML → PDF → store path + SHA256 → email
+```
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `DOCUMENTS_DIR` | `./data/documents` | PDF output root |
+| `TEMPLATE_ID` | `time-off-approval` | Template under `config/templates/` |
+| `EMAIL_PROVIDER` | `resend` | `resend` or `sendgrid` |
+| `EMAIL_DRY_RUN` | `true` | Log email only; set `false` + API key to send |
+| `EMAIL_FROM` | `onboarding@resend.dev` | Verified sandbox sender |
+
+Templates live in `config/templates/<id>/` (`template.html`, `fields.json`, `email.json`).
+
+Audit tables: `document_runs`, `documents` (file path + SHA256), `document_errors`, `email_deliveries`.
+
+Idempotency: same approved payload (`content_hash`) skips PDF regeneration; delivered emails are not resent.
+
+## Interview line
 
 > I built a two-system sync with retry and idempotent upserts—similar to TAP's Paycor integrations. A scheduled worker reads employee records, maps fields through a config layer, upserts into SQLite payroll tables, and writes an audit trail for every run and row-level failure.
+
+> For client-facing document generation, when a record is approved I map fields into HTML, render PDF with Playwright, persist the file path and SHA256, and send the attachment through a sandboxed email provider with full delivery audit.

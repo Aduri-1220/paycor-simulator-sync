@@ -1,4 +1,5 @@
 node_modules/
 data/payroll.db
+data/documents/
 .env
 *.log

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Time Off Approval — {{requestId}}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; color: #1a1a1a; margin: 40px; }
+    h1 { color: #0d47a1; font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .brand { font-size: 0.85rem; color: #666; margin-bottom: 2rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e0e0e0; }
+    th { width: 35%; color: #555; font-weight: 600; }
+    footer { margin-top: 3rem; font-size: 0.75rem; color: #888; }
+  </style>
+</head>
+<body>
+  <div class="brand">Bendito · TAP Document Generation</div>
+  <h1>Approved Time Off Request</h1>
+  <table>
+    <tr><th>Request ID</th><td>{{requestId}}</td></tr>
+    <tr><th>Employee</th><td>{{employeeName}}</td></tr>
+    <tr><th>Department</th><td>{{department}}</td></tr>
+    <tr><th>Start date</th><td>{{startDate}}</td></tr>
+    <tr><th>End date</th><td>{{endDate}}</td></tr>
+    <tr><th>Reason</th><td>{{reason}}</td></tr>
+    <tr><th>Approved by</th><td>{{approvedBy}}</td></tr>
+    <tr><th>Approved at</th><td>{{approvedAt}}</td></tr>
+  </table>
+  <footer>Generated {{generatedAt}} · This document is for client-facing records.</footer>
+</body>
+</html>

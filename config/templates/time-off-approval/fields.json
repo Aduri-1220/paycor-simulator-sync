@@ -1,0 +1,14 @@
+{
+  "templateId": "time-off-approval",
+  "version": "1",
+  "mappings": [
+    { "target": "requestId", "source": "request_id" },
+    { "target": "employeeName", "source": "employee_name" },
+    { "target": "department", "source": "department", "default": "—" },
+    { "target": "startDate", "source": "start_date" },
+    { "target": "endDate", "source": "end_date" },
+    { "target": "reason", "source": "reason", "default": "—" },
+    { "target": "approvedBy", "source": "approved_by" },
+    { "target": "approvedAt", "source": "approved_at" }
+  ]
+}

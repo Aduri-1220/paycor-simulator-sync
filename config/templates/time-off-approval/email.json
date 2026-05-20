@@ -1,0 +1,4 @@
+{
+  "subject": "Your time off request {{requestId}} has been approved",
+  "bodyText": "Hello {{employeeName}},\n\nYour time off request from {{startDate}} through {{endDate}} has been approved. Please find the official confirmation attached.\n\n— Bendito HR"
+}
